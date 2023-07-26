@@ -20,7 +20,8 @@ public class day_1 {
      * friends pairing
      * divide into k subsets
      * count binary strings(jisme ek binary string length nikalni thi of tyoe not ending with 0)
-     * 
+     * decode ways (leetcode 91 )
+     * unique path II
      */
 
     // frienfds pair question
@@ -83,6 +84,70 @@ public class day_1 {
         System.out.println(divideksubset_tabu(n, k, dp));
         print2Arr(dp);
     }
+
+    // binay count | no. having np consecutive 0's
+    public static void countBinary() {
+        int n=5;
+        
+        // int[] dp0 = new int[n + 1];
+        // int[] dp1 = new int[n + 1];
+
+        // dp0[1] = 1;
+        // dp1[1] = 1;
+
+        // for (int i = 2; i < dp1.length; i++) {
+        //     dp1[i] = dp0[i - 1] + dp1[i - 1];
+        //     dp0[i] = dp1[i - 1];
+        // }
+        // System.out.println(dp1[n] + dp0[n]);
+
+        int cozeros = 1;
+        int coones = 1;
+        for (int i = 2; i < n + 1; i++) {
+            int newZeros = coones;
+            int newOnes = coones + cozeros;
+
+            cozeros = newZeros;
+            coones = newOnes;
+        }
+        System.out.println(coones + cozeros);
+    }
+
+
+
+    // decode ways leet code 91(https://leetcode.com/problems/decode-ways/description/)
+
+
+    public int numDecodings_memo(String s,int n,int[] dp){
+        if(n==0){
+            return dp[n]=1;
+        }
+        if(dp[n-1]!=-1){
+            return dp[n];
+        }
+        int count =0;
+        if(s.charAt(n-1)>'0'){
+            count+= numDecodings_memo(s,n-1,dp);
+        }
+        if(n>1){
+          int num =(s.charAt(n-2)-'0')*10+(s.charAt(n-1)-'0'); 
+          if(num<=26 && num>=10){
+            count+=numDecodings_memo(s,n-2,dp);
+        } 
+        }
+        
+        return dp[n]=count;
+    }
+
+
+   public int numDecodings(String s) {
+       int n=s.length();
+       int[] dp=new int [n+1];
+       Arrays.fill(dp, -1);
+       int ans=numDecodings_memo(s,n,dp);
+       return ans;
+   }
+
 
     public static void main(String[] args) {
        // int n = 5;
