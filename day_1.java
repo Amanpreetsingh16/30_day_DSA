@@ -22,6 +22,7 @@ public class day_1 {
      * count binary strings(jisme ek binary string length nikalni thi of tyoe not ending with 0)
      * decode ways (leetcode 91 )
      * unique path II
+     * 
      */
 
     // frienfds pair question
@@ -152,7 +153,7 @@ public class day_1 {
     public static void main(String[] args) {
        // int n = 5;
        //System.out.println(friendPair(n)); 
-       dividekSubset();
+       //dividekSubset();
        
     }
 }

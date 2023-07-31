@@ -74,7 +74,8 @@ public class  day_3{
 
 
     public static void main(String[] args){
-
+        int[] arr={2,5,7,4,8,9,3,1};
+       // oneTransactionAllowed(arr,arr.length);
 
     }
 }

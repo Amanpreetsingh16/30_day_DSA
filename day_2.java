@@ -26,7 +26,7 @@ public class day_2 {
      * https://leetcode.com/problems/min-cost-climbing-stairs/description/)
      * maze path (unique path leet code question no. 62
      * https://leetcode.com/problems/unique-paths/description/)
-     * 
+     * gold mine problem
      */
 
     // climb stair (leet code question no.70
@@ -188,6 +188,76 @@ public class day_2 {
         return minPathSum_memo(0,0,m-1,n-1,grid,dp,dir);
     }
 
+ 
+    // gold mine 
+
+    public static int goldmineProblem_memo(int[][] grid, int r, int c, int[][] dp, int[][] dir){
+        if(c == grid[0].length - 1){
+            return dp[r][c] = grid[r][c];
+        }
+        if(dp[r][c] != -1){
+            return dp[r][c];
+        }
+
+        int maxGold = 0;
+        for (int d = 0; d < dir.length; d++) {
+            int x = r + dir[d][0];
+            int y = c + dir[d][1];
+
+            if(x >= 0 && y >= 0 && x <  grid.length && y < grid[0].length){
+                maxGold = Math.max(maxGold, goldmineProblem_memo(grid, x, y, dp, dir) + grid[r][c]);
+            }
+        }
+
+        return dp[r][c] = maxGold;
+    }
+
+    public static int goldmineProblem_tabu(int[][] grid, int R, int C, int[][] dp, int[][] dir){
+    
+        for (int c = grid[0].length; c >= 0; c--) {
+            for (int r = grid.length - 1; r >= 0; r--) {
+                
+                if(c == grid[0].length - 1){
+                     dp[r][c] = grid[r][c];
+                     continue;
+                }
+
+                int maxGold = 0;
+                for (int d = 0; d < dir.length; d++) {
+                    int x = r + dir[d][0];
+                    int y = c + dir[d][1];
+
+                    if(x >= 0 && y >= 0 && x <  grid.length && y < grid[0].length){
+                        maxGold = Math.max(maxGold, dp[x][y] + grid[r][c]);
+                    }
+                }
+
+                dp[r][c] = maxGold;
+            }
+        }
+        return dp[R][C];
+    }
+
+    public static void goldmineProblem() {
+        int n = 5;
+        int m = 4;
+
+        int[][] grid = new int[n][m];
+       
+        int[][] dir = { {-1, 1}, {1, 1}, {0, 1} };
+        int[][] dp = new int[n][m];
+        for (int[] a : dp) {
+            Arrays.fill(a, -1);
+        }
+
+        int maxGold = 0;
+        for (int i = 0; i < n; i++) {
+            maxGold = Math.max(maxGold, goldmineProblem_memo(grid, i, 0, dp, dir));
+        }
+
+        print2Arr(dp);
+        System.out.println(maxGold);
+    }
     public static void main(String[] args) {
         // int n=6;
         // System.out.println(climbStairs(n));

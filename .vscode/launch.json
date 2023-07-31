@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "day_4",
+      "request": "launch",
+      "mainClass": "day_4",
+      "projectName": "30daysdsa_25c8004"
+    },
+    {
+      "type": "java",
+      "name": "day_2",
+      "request": "launch",
+      "mainClass": "day_2",
+      "projectName": "30daysdsa_25c8004"
+    },
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "day_1",
+      "request": "launch",
+      "mainClass": "day_1",
+      "projectName": "30daysdsa_25c8004"
+    }
+  ]
+}
