@@ -238,6 +238,28 @@ public class day_7 {
             }
             return n- max;
      }
+
+
+     // LIS recursive call
+     public static int LIS_RES_memeo(int[] arr, int ei,int[] dp){
+        if(dp[ei]!=0){
+            return dp[ei];
+        }
+        int maxLen=1;
+        for(int i=ei-1;i>=0;i--){
+            maxLen=Math.max(maxLen,LIS_RES_memeo(arr, i, dp)+1);
+        }
+        return dp[ei]=maxLen;
+     }
+     public static int LIS_RES(int[] arr){
+        int n=arr.length;
+        int[] dp=new int[n];
+       int  maxLen=0;
+        for(int i=0;i<n;i++){
+            maxLen=Math.max(maxLen,LIS_RES_memeo(arr, i, dp))
+        }
+        return maxLen;
+     }
      
     public static void main(String[] args){
       
