@@ -214,7 +214,39 @@ public boolean canPartition(int[] nums) {
 
 }
 
-// leet code target sum expression
+// leetcode 494 target sum 
+public int findTargetSumWays(int[] nums,int n, int target,int sum,int[][] dp){
+    if(n==0){
+        return dp[n][sum]=(target==sum?1:0);
+    }
+    if(dp[n][sum]!=-1){
+    return dp[n][sum];
+    }
+    int count=0;
+    count+=findTargetSumWays(nums,n-1,target,sum - nums[n-1],dp);
+    count+=findTargetSumWays(nums,n-1,target,sum + nums[n-1],dp);
+    return dp[n][sum]=count;
+}
+public int findTargetSumWays(int[] nums, int target) {
+    if(nums.length==0){
+        return 0;
+    }
+    int n=nums.length;
+    int sum=0;
+    for( int ele: nums){
+        sum+=ele;
+    }
+    int[][] dp=new int[n+1][2*sum+1];
+    if(sum<target || target<-sum){
+        return 0;
+    }
+    for(int[] d: dp){
+        Arrays.fill(d,-1);
+    }
+    int ans=findTargetSumWays(nums,n,target+sum,sum,dp);
+    return ans;
+
+}
     public static void main(String[] args){
       int[] arr={2,3,5,7};
       int tar=10;
