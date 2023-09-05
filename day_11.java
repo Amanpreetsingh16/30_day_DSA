@@ -57,7 +57,7 @@ public class day_11 {
         }
         while(curr!=null){
             if(curr!=pivotNode){
-            if(curr.sum<= pivotNode.sum){
+            if(curr.val<= pivotNode.val){
                 sp.next=curr;
                 sp=sp.next;
             }else{
