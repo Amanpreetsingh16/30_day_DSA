@@ -3,6 +3,12 @@ public class day_11 {
     /*
      * Linked list continue
      * Quick sort Linked list
+     * add two linked list
+     * subtract two linked list 
+     * Multiply two linked list 
+     * Is cycle present in linked list 
+     * cylcle node ina linked list
+     * intersection node in a linked list using floyed cycle method
      * 
      */
     public class ListNode {
@@ -286,7 +292,8 @@ public class day_11 {
 
 
      // extention of cycle node finding other parameter of equations
-
+     // generic solution with all edge cases covered 
+     // edge case when there is no tail only cycle is present
      public ListNode cycleNode2(ListNode head){
         if(head==null || head.next ==null){
             return null;
@@ -304,43 +311,27 @@ public class day_11 {
             return null;
         }
         ListNode meetingNode=fast;
-        int a=1, b=0,c=0,bc=0,nDash=0,n=0;
-        int count=0;
+        int a=0, b=0,c=0,bc=0,nDash=0,n=0;
         slow=head;
-        boolean isLoopRun=false;
         while(fast!=slow){
             slow=slow.next;
             fast=fast.next;
-            if(nDash==0 && fast==meetingNode){
-                bc=count;
-            }
             if(fast==meetingNode){
                 nDash++;
             }
             a++;
-            count++;
-            isLoopRun=true;
         }
-
-        // edge case when there is no tail only cycle is present
-        if(!isLoopRun){
+        fast=meetingNode;
+        fast=fast.next;
+        bc=1;
+        while(fast!=meetingNode){
             fast=fast.next;
-            bc=1;
-            while(fast!=slow){
-                fast=fast.next;
-                bc++;
-            }
-            a=0;
-            b=bc;
-            c=0;
-            n=1;
-            nDash=0;
-        }else{
-
+            bc++;
+        }
             n=nDash+1;
             c=a-bc*nDash;
             b=bc-c;
-        }
+        
         System.out.println("length of tail:"+a);
         System.out.println("length of b:"+b);
         System.out.println("length of c:"+c);
