@@ -167,7 +167,7 @@ public class day_2 {
         if(sr==er && sc==ec){
             return dp[sr][sc]=grid[sr][sc];
         }
-        if(dp[sr][sc]!=0){
+         if(dp[sr][sc]!=0){
             return dp[sr][sc];
         }
         int mincost=Integer.MAX_VALUE;
